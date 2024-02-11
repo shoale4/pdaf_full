@@ -99,21 +99,21 @@ SUBROUTINE initialize()
     v(:,:) = 0
     h(:,:) = 1 * 0.5
   elseif (spinup_phase .eq. 1) then
-    OPEN(11, file='outputs/for_elizabeth/v_init', status='old', form='unformatted', access='stream')
+    OPEN(11, file='outputs/v_init', status='old', form='unformatted', access='stream')
     READ (11) v_bin
     close (11)
-    OPEN(11, file='outputs/for_elizabeth/h_init', status='old', form='unformatted', access='stream')
+    OPEN(11, file='outputs/h_init', status='old', form='unformatted', access='stream')
     READ (11) h_bin
     close (11)
   endif
 #endif 
 
 #ifdef USE_PDAF
-  OPEN(11, file='outputs/for_elizabeth/v_init', status='old', form='unformatted', access='stream')
+  OPEN(11, file='outputs/v_init', status='old', form='unformatted', access='stream')
   READ (11) v_bin
   close (11)
 
-  OPEN(11, file='outputs/for_elizabeth/h_init', status='old', form='unformatted', access='stream')
+  OPEN(11, file='outputs/h_init', status='old', form='unformatted', access='stream')
   READ (11) h_bin
   close (11)
 #endif 

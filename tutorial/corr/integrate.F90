@@ -107,12 +107,12 @@ SUBROUTINE integrate()
       if (spinup_phase .eq. 0) then
          if (step == spinup_time_steps) then
             ! initial file output for spin-up cases (new sb 9/18/23)
-            OPEN(11, file = 'outputs/for_elizabeth/v_init', status='replace', form='unformatted', access='stream', action='write')
+            OPEN(11, file = 'outputs/v_init', status='replace', form='unformatted', access='stream', action='write')
             WRITE (11) reshape(v, (/nx*nx/))
             close(11)
             write (*,*) "Success writing initial V file"
 
-            OPEN(12, file = 'outputs/for_elizabeth/h_init',  status='replace', form='unformatted', access='stream', action='write')
+            OPEN(12, file = 'outputs/h_init',  status='replace', form='unformatted', access='stream', action='write')
             write(12) reshape(h, (/nx*nx/))
             close(12)
             write (*,*) "Success writing initial H file"
