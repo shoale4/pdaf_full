@@ -24,7 +24,7 @@ RANLIB = ranlib
 CPP = /usr/bin/cpp
 
 # Definitions for CPP
-# Define USE_PDAF to include PDAF
+# Defi=ne USE_PDAF to include PDAF
 # Define PDAF_NO_UPDATE to deactivate the analysis step of the filter
 # Define BLOCKING_MPI_EXCHANGE to use blocking MPI commands to exchange data between model and PDAF
 # (if the compiler does not support get_command_argument()
@@ -50,7 +50,7 @@ AR_SPEC =
 RAN_SPEC =
 
 # Include path for MPI header file
-MPI_INC = 
+MPI_INC = -I/usr/local/Cellar/open-mpi/4.1.5/include
 
 # Object for nullMPI - if compiled without MPI library
 OBJ_MPI = 
