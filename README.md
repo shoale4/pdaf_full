@@ -18,5 +18,5 @@ For full documentation and tutorial, see: http://pdaf.awi.de
 6. Update the `headfilepath` variable with the path to your chosen header file (from `make.arch/`).
 7. Open a terminal and navigate to the `tutorial/corr/` directory.
 8. Run `chmod +x testrun_macos.sh`.
-9. Run `./testrun_macos.sh'.
+9. Run `./testrun_macos.sh`.
 
