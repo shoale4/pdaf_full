@@ -23,7 +23,7 @@ MODULE mod_model
   integer, allocatable :: logint1(:,:)
   real :: tau_in, tau_out, tau_open, tau_close, v_gate, v_stim  
   real :: dx, dt, diff, jstim, xlap1, xlap2, d_to_dx2
-  REAL, ALLOCATABLE :: v(:,:), h(:,:)
+  REAL(8), ALLOCATABLE :: v(:,:), h(:,:)
   real(8), allocatable :: jin(:,:), jout(:,:), dh(:,:), dv(:,:), xlap(:,:)
   real(8), allocatable :: rmse_(:), spread_(:)
   logical(4), allocatable :: log1(:,:)

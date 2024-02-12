@@ -18,7 +18,7 @@ SUBROUTINE integrate()
       tau_in, tau_out, tau_open, tau_close, v_gate, diff, &
       total_steps, d_to_dx2, nspiraltime, log1, logint1, jin, jout, & 
       dv, dh, xlap, jstim, xlap1, xlap2, tau_in, tau_out, &
-      tau_open, tau_close, v_gate, dx, diff, &
+      tau_open, tau_close, v_gate, diff, &
       spinup_phase, spinup_time_steps
    
    use output_bin, &
@@ -102,7 +102,6 @@ SUBROUTINE integrate()
       ! integrate using forward euler method
       v = v + dt*dv + xlap
       h = h + dt*dh
-
 
       if (spinup_phase .eq. 0) then
          if (step == spinup_time_steps) then

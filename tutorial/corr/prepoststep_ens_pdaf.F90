@@ -111,13 +111,16 @@ SUBROUTINE prepoststep_ens_pdaf(step, dim_p, dim_ens, dim_ens_p, dim_obs_p, &
   ! *** Compute mean state
   WRITE (*, '(8x, a)') '--- compute ensemble mean'
 
-  state_p = 0.0
+  state_p(:) = 0.0
   DO member = 1, dim_ens
      DO i = 1, dim_p
         state_p(i) = state_p(i) + ens_p(i, member)
      END DO
   END DO
   state_p(:) = invdim_ens * state_p(:)
+
+
+
 
   ! *** Compute sampled variances ***
   variance(:) = 0.0
@@ -134,6 +137,7 @@ SUBROUTINE prepoststep_ens_pdaf(step, dim_p, dim_ens, dim_ens_p, dim_obs_p, &
 ! ************************************************************
 ! *** Compute RMS errors according to sampled covar matrix ***
 ! ************************************************************
+
 
   ! total estimated RMS error
   DO i = 1, dim_p

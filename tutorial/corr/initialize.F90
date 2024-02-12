@@ -15,11 +15,11 @@ SUBROUTINE initialize()
 
   USE mod_model, &          ! Model variables
       ONLY: nx, v, h, total_steps, dt, &
-      obs, tau_in, tau_out, tau_open, tau_close, v_gate, v_stim, &
+      tau_in, tau_out, tau_open, tau_close, v_gate, &
       endtime, stim_dur, spiraltime, dx, diff, nstimdur, d_to_dx2, nspiraltime, &
-      log1, logint1, jin, jout, dv, dh, xlap, jstim, step_null, & 
+      log1, logint1, jin, jout, dv, dh, xlap, step_null, & 
       tau_in, tau_out, tau_open, tau_close, v_gate, dx, diff, rmse_, &
-      spinup_time_steps, spinup_phase, total_time_in_ms
+      spinup_time_steps, spinup_phase, total_time_in_ms, spread_
       
     use parser_no_mpi, &
        only: parse
@@ -39,9 +39,9 @@ SUBROUTINE initialize()
   ! Model specifications
   nx = 200          ! Extent of grid in x-direction
   dt = 0.25
-  spinup_time_steps = 500/dt ! number of time steps to let model spin-up (new sb 3/6/23)
+  spinup_time_steps = int(500/dt) ! number of time steps to let model spin-up (new sb 3/6/23)
   total_time_in_ms = 4000
-  total_steps = total_time_in_ms/dt + spinup_time_steps ! Number of time steps to perform
+  total_steps = int(total_time_in_ms/dt) + spinup_time_steps ! Number of time steps to perform
   
   ! parameter values
 	tau_in=0.35
@@ -57,9 +57,9 @@ SUBROUTINE initialize()
   dx=0.05
 	diff=0.001
 
-	nstimdur = stim_dur/dt
+	nstimdur = int(stim_dur/dt)
 	d_to_dx2 = dt/(dx*dx)
-	nspiraltime =  real(spiraltime)/dt
+	nspiraltime =  int(spiraltime/dt)
 
 	allocate(log1(nx,nx))
 	allocate(logint1(nx,nx))
@@ -84,6 +84,8 @@ SUBROUTINE initialize()
   ! initialize rmse output files
   allocate(rmse_(total_steps))
   rmse_(:) = 0.0
+  allocate(spread_(total_steps))
+  spread_(:) = 0.0
 
   ! new sb 1/9/24 -- calling parse function given by pdaf
   handle = 'spinup'
@@ -99,26 +101,30 @@ SUBROUTINE initialize()
     v(:,:) = 0
     h(:,:) = 1 * 0.5
   elseif (spinup_phase .eq. 1) then
-    OPEN(11, file='outputs/v_init', status='old', form='unformatted', access='stream')
+    OPEN(11, file=trim('outputs/v_init'), form='unformatted', access='stream')
     READ (11) v_bin
     close (11)
-    OPEN(11, file='outputs/h_init', status='old', form='unformatted', access='stream')
+    OPEN(11, file=trim('outputs/h_init'), form='unformatted', access='stream')
     READ (11) h_bin
     close (11)
+    v = reshape(v_bin, (/nx,nx/)) 
+    h = reshape(h_bin, (/nx,nx/))
   endif
 #endif 
 
 #ifdef USE_PDAF
-  OPEN(11, file='outputs/v_init', status='old', form='unformatted', access='stream')
+  OPEN(11, file=trim('outputs/v_init'), form='unformatted', access='stream')
   READ (11) v_bin
   close (11)
 
-  OPEN(11, file='outputs/h_init', status='old', form='unformatted', access='stream')
+  OPEN(11, file=trim('outputs/h_init'), form='unformatted', access='stream')
   READ (11) h_bin
   close (11)
+
+  v = reshape(v_bin, (/nx,nx/)) 
+  h = reshape(h_bin, (/nx,nx/))
 #endif 
 
-  v = reshape(v_bin, (/nx,nx/))
-  h = reshape(h_bin, (/nx,nx/))
   
+
 END SUBROUTINE initialize

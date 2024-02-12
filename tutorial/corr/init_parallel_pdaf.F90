@@ -60,6 +60,8 @@ SUBROUTINE init_parallel_pdaf(dim_ens, screen)
        ONLY: mype_world, npes_world, mype_model, npes_model, &
        COMM_model, mype_filter, npes_filter, COMM_filter, filterpe, &
        n_modeltasks, local_npes_model, task_id, COMM_couple, MPIerr
+  use mod_assimilation, &
+       only: filtertype
   USE parser, &                   ! Command line parser
        ONLY: parse
 
@@ -99,6 +101,8 @@ SUBROUTINE init_parallel_pdaf(dim_ens, screen)
   ! *** to the ensemble size we parse dim_ens from the command line.
   handle = 'dim_ens'
   CALL parse(handle, n_modeltasks)
+  handle = 'filtertype'
+  call parse(handle, filtertype)
 
 
   ! *** Initialize communicators for ensemble evaluations ***

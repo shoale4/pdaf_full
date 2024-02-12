@@ -45,8 +45,9 @@ SUBROUTINE init_ens_pdaf(filtertype, dim_p, dim_ens, state_p, Uinv, &
 
 ! *** local variables ***
   INTEGER :: i                       ! Counter
-  CHARACTER(len=2) :: i_str          ! String for ensemble member
   real(8), allocatable :: ens_arr(:,:)
+  ! character(len=10) :: fname          ! character for reading ens files
+  character(len=2) :: i_str
 
 
 
@@ -66,9 +67,15 @@ SUBROUTINE init_ens_pdaf(filtertype, dim_p, dim_ens, state_p, Uinv, &
 ! *** Read ensemble from files ***
 ! ********************************
   do i = 1, dim_ens
-    write(i_str, "(I0)") i
-    call read_txt('ens_'//trim(i_str), ens_p(:,i))
+    if (i .lt. 10) then
+      write(i_str, "(I2.1)") i
+    else
+      write(i_str, "(I2.2)") i
+    endif
+    call read_txt(trim('ens_'//adjustl(i_str)), ens_arr(:,i))
   end do
+
+  ens_p = ens_arr
 
 ! ****************
 ! *** clean up ***
