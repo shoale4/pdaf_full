@@ -10,7 +10,7 @@ For full documentation and tutorial, see: http://pdaf.awi.de
 
 ## How to Run
 
-1. Clone this repo by running `git clone https://github.com/shoale4/pdaf_full/master`
+1. Clone this repo.
 2. Ensure you have `cmake`, `gcc`, and `MPI` installed on your machine.
 3. Navigate to the header file in the `make.arch/` directory that suits your machine's needs.
 4. Update the `MPI_INC` variable with the include path to your `MPI` header file.
