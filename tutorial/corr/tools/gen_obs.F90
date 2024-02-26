@@ -41,7 +41,10 @@ program gen_obs
 
 		! read state vector
 		write(filename, "(I0)") iter
-		call read_txt(filename, state)
+		! call read_txt(filename, state)
+		OPEN (11, file='../txt_file_data/state_step_'//TRIM(filename), form='unformatted', access='stream', action='read')
+		read (11) state
+		CLOSE(11)
 
 
 		! new observation sparcity -- sb 3/29 !!!

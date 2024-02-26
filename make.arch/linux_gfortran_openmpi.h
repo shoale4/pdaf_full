@@ -34,13 +34,14 @@ CPP_DEFS = -DUSE_PDAF
 # To use OpenMP parallelization in PDAF, specify it here (-fopenmp (gfortran) or -openmp (ifort))
 #   (You should explicitly define double precision for floating point
 #   variables in the compilation)  
-OPT = -O3 -fdefault-real-8
+OPT = -O3 -fdefault-real-8 -fopenmp
 
 # Optimization specifications for Linker
 OPT_LNK = $(OPT)
 
 # Linking libraries (BLAS, LAPACK, if required: MPI)
-LINK_LIBS =-L/usr/lib -llapack  -lblas   -lm
+#LINK_LIBS =-L/usr/lib -llapack  -lblas   -lm
+LINK_LIBS = -L/usr/local/pace-apps/spack/packages/linux-rhel7-x86_64/gcc-4.8.5/openblas-0.3.18-nk2wzjljuj6r3fjwje7ofkmxhqer7gdq/lib -lopenblas -L/usr/local/pace-apps/spack/packages/linux-rhel7-x86_64/gcc-10.3.0/netlib-scalapack-2.2.0-2rv5fvduzxa5idnrbzlwbkoalz6dtvea/lib -lscalapack -lm
 
 # Specifications for the archiver
 AR_SPEC = 
@@ -49,7 +50,7 @@ AR_SPEC =
 RAN_SPEC =
 
 # Include path for MPI header file
-MPI_INC = 
+MPI_INC = -I/usr/local/pace-apps/manual/packages/openmpi/4.1.4/gcc-10.3.0/include -pthread
 
 # Object for nullMPI - if compiled without MPI library
 OBJ_MPI =

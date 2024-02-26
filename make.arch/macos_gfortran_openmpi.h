@@ -50,7 +50,7 @@ AR_SPEC =
 RAN_SPEC =
 
 # Include path for MPI header file
-MPI_INC = -I/usr/local/Cellar/open-mpi/4.1.5/include
+MPI_INC = -I/usr/local/Cellar/open-mpi/5.0.2/include
 
 # Object for nullMPI - if compiled without MPI library
 OBJ_MPI = 

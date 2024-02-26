@@ -24,3 +24,5 @@
 /tutorial/corr/results/for_elizabeth/
 /tutorial/corr/*.o
 /tutorial/corr/*.mod
+/tutorial/corr-flex/
+/tutorial/corr-flex-v2/txt_file_data/
