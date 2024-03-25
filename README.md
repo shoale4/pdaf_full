@@ -11,7 +11,7 @@ For full documentation and tutorial, see: http://pdaf.awi.de
 ## How to Run
 
 1. Clone this repo.
-2. Ensure you have `make`, `gfortran/ifort`, `MPI`, 'BLAS' and 'LAPACK' installed on your machine.
+2. Ensure you have `make`, `gfortran/ifort`, `MPI`, `BLAS` and `LAPACK` installed on your machine.
 3. Navigate to the header file in the `make.arch/` directory that suits your machine's needs.
 4. Update the `MPI_INC` variable with the include path to your `MPI` header file.
 5. Navigate to the `tutorial/corr/` directory.
